@@ -1,0 +1,25 @@
+<head>
+  <title>{{title | async}}</title>
+  <meta charset="UTF-8">
+
+  <base href="/">
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <meta *ngFor="let meta of metas_by_name | async" [name]="meta.name" [content]="meta.content">
+
+  <meta *ngFor="let meta of metas_by_property | async" [attr.property]="meta.property" [content]="meta.content">
+
+  <link *ngFor="let style of styles | async" [attr.href]="style">
+
+  <script *ngFor="let script of head_scripts | async" [src]="script"></script>
+
+</head>
+<body>
+
+  <app>
+    Loading Universal ...
+  </app>
+
+  <script src="/index.js"></script>
+</body>

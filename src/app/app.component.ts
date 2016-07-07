@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 
 // templateUrl example
 import { Home } from './home';
+import { HtmlService } from './html/html.service';
+import { Meta } from './meta/meta.model';
 //
 /////////////////////////
 // ** Example Directive
@@ -87,9 +89,29 @@ export class App {
   data = {};
   server: string;
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, private htmlService: HtmlService) { }
+
+  setMeta() {
+    let metas: Meta[] = [{
+      name: 'description',
+      content: 'Angualr 2 Universal'
+    }, {
+      name: 'keywords',
+      content: 'Angualr 2,Universal'
+    }, {
+      name: 'author',
+      content: 'PatrickJS'
+    }];
+
+    metas.forEach(meta => {
+      this.htmlService.setMeta(meta);
+    });
+  }
 
   ngOnInit() {
+    this.htmlService.setTitle('Angular 2 Universal Starter');
+
+    this.setMeta();
     // limit the use of setTimeouts
     setTimeout(() => {
       this.server = 'This was rendered from the server!';

@@ -15,8 +15,11 @@ import { provideRouter } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
 // Application
-import {App} from './app/app.component';
+import {Html} from './app/html/html.component';
 import {routes} from './app/app.routes';
+import { HTML_PROVIDERS } from './app/html/node';
+
+import 'rxjs/Rx';
 
 export function ngApp(req, res) {
   let baseUrl = '/';
@@ -24,7 +27,7 @@ export function ngApp(req, res) {
 
   let config: ExpressEngineConfig = {
     directives: [
-      App
+      Html
     ],
     platformProviders: [
       {provide: ORIGIN_URL, useValue: 'http://localhost:3000'},
@@ -34,7 +37,8 @@ export function ngApp(req, res) {
       {provide: REQUEST_URL, useValue: url},
       NODE_HTTP_PROVIDERS,
       provideRouter(routes),
-      NODE_LOCATION_PROVIDERS
+      NODE_LOCATION_PROVIDERS,
+      HTML_PROVIDERS
     ],
     async: true,
     preboot: false // { appRoot: 'app' } // your top level app component selector
