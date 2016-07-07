@@ -1,10 +1,10 @@
 import {provide} from '@angular/core';
 
 import {HtmlService, HtmlBackend} from '../html.service';
-import {NodeHtmlBackend} from './node-html.backend';
+import {BrowserHtmlBackend} from './browser-html.backend';
 
-export const HTML_PROVIDERS = [
-  NodeHtmlBackend,
-  provide(HtmlBackend, {useClass: NodeHtmlBackend}),
+export const BROWSER_HTML_PROVIDERS = [
+  BrowserHtmlBackend,
+  provide(HtmlBackend, {useExisting: BrowserHtmlBackend}),
   HtmlService
 ];

@@ -17,7 +17,7 @@ import { APP_BASE_HREF } from '@angular/common';
 // Application
 import {Html} from './app/html/html.component';
 import {routes} from './app/app.routes';
-import { HTML_PROVIDERS } from './app/html/node';
+import { NODE_HTML_PROVIDERS } from './app/html/node';
 
 import 'rxjs/Rx';
 
