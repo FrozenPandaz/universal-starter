@@ -46,16 +46,17 @@ function ngApp(req, res) {
     baseUrl: '/',
     requestUrl: req.originalUrl,
     originUrl: 'http://localhost:3000'
+  }, function(err, html) {
+    html = html.replace(/u-script/g, 'script')
+    res.status(200).send(html);
   });
 }
 // Routes with html5pushstate
 // ensure routes match client-side-app
-app.get('/', ngApp);
-app.get('/about', ngApp);
-app.get('/about/*', ngApp);
-app.get('/home', ngApp);
-app.get('/home/*', ngApp);
-
+app.get('/app1', ngApp);
+app.get('/app2', ngApp);
+app.get('/app1/home', ngApp);
+app.get('/app2/home', ngApp);
 
 app.get('*', function(req, res) {
   res.setHeader('Content-Type', 'application/json');

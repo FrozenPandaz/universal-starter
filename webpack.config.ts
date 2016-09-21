@@ -30,9 +30,13 @@ var commonConfig = {
 
 var clientConfig = {
   target: 'web',
-  entry: './src/client',
+  entry: {
+    app1: './src/app/app1/client',
+    app2: './src/app/app2/client'
+  },
   output: {
-    path: root('dist/client')
+    path: root('dist/client'),
+    filename: '[name].js'
   },
   node: {
     global: true,
